@@ -1,6 +1,7 @@
 package com.example.webshop.repository;
 
 import com.example.webshop.domain.Customer;
+import com.example.webshop.dto.AddressInfo;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -40,8 +41,14 @@ public class CustomerRepository {
 
 
     public List<Customer> findByCity(String city) {
-        return entityManager.createQuery("SELECT c FROM Customer c JOIN Address a WHERE c.address.city = :city", Customer.class)
+        return entityManager.createQuery("SELECT c FROM Customer c WHERE c.address.city = :city", Customer.class)
                 .setParameter("city", city)
+                .getResultList();
+    }
+
+    public List<Customer> findByZipcode(Integer zipcode) {
+        return entityManager.createQuery("SELECT c FROM Customer c WHERE c.address.zipcode = :zipcode", Customer.class)
+                .setParameter("zipcode", zipcode)
                 .getResultList();
     }
 }

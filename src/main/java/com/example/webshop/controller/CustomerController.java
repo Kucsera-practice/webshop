@@ -35,7 +35,7 @@ public class CustomerController {
         return new ResponseEntity<>(customerInfos, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/id/{id}")
     public ResponseEntity<CustomerInfo> findCustomerByID(@PathVariable("id") Long id) {
         log.info("Http request, GET /api/customers/{Id} with variable: " + id);
         CustomerInfo customer = customerService.findById(id);
@@ -48,4 +48,19 @@ public class CustomerController {
         List<CustomerInfo> customerInfo = customerService.findByName(name);
         return new ResponseEntity<>(customerInfo, HttpStatus.OK);
     }
+
+    @GetMapping("/city/{city}")
+    public ResponseEntity<List<CustomerInfo>> findCustomerByCity(@PathVariable("city") String city){
+        log.info("Http request, GET /api/customers/{city} with variable: " + city);
+        List<CustomerInfo> customerInfo = customerService.findByCity(city);
+        return new ResponseEntity<>(customerInfo, HttpStatus.OK);
+    }
+
+    @GetMapping("/zipcode/{zipcode}")
+    public ResponseEntity<List<CustomerInfo>> findCustomerByAddress(@PathVariable("zipcode") Integer zipcode){
+        log.info("Http request, GET /api/customers/{address} with variable: " + zipcode);
+        List<CustomerInfo> customerInfo = customerService.findByZipcode(zipcode);
+        return new ResponseEntity<>(customerInfo, HttpStatus.OK);
+    }
+
 }

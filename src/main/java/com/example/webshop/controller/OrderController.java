@@ -32,7 +32,6 @@ public class OrderController {
     @GetMapping
     public ResponseEntity<List<OrderInfo>> findAll(){
         log.info("Http request, GET /api/customers");
-        log.info("Alma");
         List<OrderInfo> orderInfos = orderService.listOrders();
         return new ResponseEntity<>(orderInfos, HttpStatus.OK);
     }
