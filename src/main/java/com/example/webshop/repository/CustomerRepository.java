@@ -38,6 +38,7 @@ public class CustomerRepository {
                 .getResultList();
     }
 
+
     public List<Customer> findByCity(String city){
         return entityManager.createQuery("SELECT c FROM Customer c JOIN Address a WHERE c.address.city = :city",Customer.class)
                 .setParameter("city",city)
