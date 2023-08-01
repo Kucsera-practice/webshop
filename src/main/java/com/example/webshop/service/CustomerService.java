@@ -68,11 +68,11 @@ public class CustomerService {
                     .collect(Collectors.toList());
     }
 
-//    public CustomerInfo findByCity(String city) {
-//        return modelMapper.map(findCustomerByCity());
-//    }
+    public List<CustomerInfo> findByCyíty(String city) {
+        List<Customer> customers = customerRepository.findByCity(city);
+        return customers.stream()
+                .map(customer -> modelMapper.map(customer, CustomerInfo.class))
+                .collect(Collectors.toList());
+    }
 
-//    private Customer findCustomerByCity(String city) {
-//
-//    }
 }
