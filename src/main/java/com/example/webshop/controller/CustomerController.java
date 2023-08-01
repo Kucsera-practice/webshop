@@ -41,4 +41,11 @@ public class CustomerController {
         CustomerInfo customer = customerService.findById(id);
         return new ResponseEntity<>(customer, HttpStatus.OK);
     }
+
+//    @GetMapping("/{city}")
+//    public ResponseEntity<List<CustomerInfo>> findCustomerByCity(@PathVariable("city") String city) {
+//        log.info("Http request, GET /api/customers/{city} with variable: " + city);
+//        CustomerInfo customer = customerService.findByCity(city);
+//        return new ResponseEntity<>(customer, HttpStatus.OK);
+//    }
 }

@@ -68,4 +68,11 @@ public class CustomerService {
                     .collect(Collectors.toList());
     }
 
+//    public CustomerInfo findByCity(String city) {
+//        return modelMapper.map(findCustomerByCity());
+//    }
+
+//    private Customer findCustomerByCity(String city) {
+//
+//    }
 }
