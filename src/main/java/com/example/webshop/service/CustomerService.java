@@ -2,7 +2,6 @@ package com.example.webshop.service;
 
 import com.example.webshop.domain.Address;
 import com.example.webshop.domain.Customer;
-import com.example.webshop.dto.AddressInfo;
 import com.example.webshop.dto.CustomerCreateUpdateCommand;
 import com.example.webshop.dto.CustomerInfo;
 import com.example.webshop.exceptionhandling.CustomerNotFoundException;
@@ -12,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -67,5 +65,4 @@ public class CustomerService {
                     .map(customer -> modelMapper.map(customer, CustomerInfo.class))
                     .collect(Collectors.toList());
     }
-
 }

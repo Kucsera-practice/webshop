@@ -37,23 +37,23 @@ public class AddressController {
         return new ResponseEntity<>(addressInfos, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<AddressInfo> findById(@PathVariable("id") Long id) {
-        log.info("Http request, GET /api/addresses/{id} with variable" + id);
+    @GetMapping("/{addressId}")
+    public ResponseEntity<AddressInfo> findById(@PathVariable("addressId") Long id) {
+        log.info("Http request, GET /api/addresses/{addressId} with variable" + id);
         AddressInfo addressInfo = addressService.findById(id);
         return new ResponseEntity<>(addressInfo, HttpStatus.OK);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<AddressInfo> update(@PathVariable("id") Long id, @Valid @RequestBody AddressCreateUpdateCommand command){
-        log.info("Http request, PUT /api/bee/{beeId} body: " + command.toString() + " With variable: " + id);
+    @PutMapping("/{addressId}")
+    public ResponseEntity<AddressInfo> update(@PathVariable("addressId") Long id, @Valid @RequestBody AddressCreateUpdateCommand command){
+        log.info("Http request, PUT /api/bee/{addressId} body: " + command.toString() + " With variable: " + id);
         AddressInfo update = addressService.update(id, command);
         return new ResponseEntity<>(update,HttpStatus.OK);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
-        log.info("Http request, DELETE /api/addresses/{id} with variable: " + id);
+    @DeleteMapping("/{addressId}")
+    public ResponseEntity<Void> delete(@PathVariable("addressId") Long id) {
+        log.info("Http request, DELETE /api/addresses/{addressId} with variable: " + id);
        addressService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
