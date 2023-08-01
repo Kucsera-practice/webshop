@@ -1,5 +1,8 @@
 package com.example.webshop.service;
 
+import com.example.webshop.domain.Address;
+import com.example.webshop.domain.Order;
+import com.example.webshop.dto.AddressInfo;
 import com.example.webshop.dto.OrderCreateUpdateCommand;
 import com.example.webshop.dto.OrderInfo;
 import com.example.webshop.repository.OrderRepository;
@@ -31,6 +34,8 @@ public class OrderService {
     }
 
     public OrderInfo saveOrder(OrderCreateUpdateCommand command) {
-
+        Order toSave = modelMapper.map(command, Order.class);
+        Order saved = orderRepository.save(toSave);
+        return modelMapper.map(saved, OrderInfo.class);
     }
 }

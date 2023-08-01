@@ -17,4 +17,9 @@ public class OrderRepository {
         return entityManager.createQuery("SELECT o FROM Order o", Order.class)
                 .getResultList();
     }
+
+    public Order save(Order toSave) {
+        entityManager.persist(toSave);
+        return toSave;
+    }
 }

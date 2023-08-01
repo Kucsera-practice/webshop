@@ -1,6 +1,5 @@
 package com.example.webshop.controller;
 
-import com.example.webshop.domain.Customer;
 import com.example.webshop.dto.CustomerCreateUpdateCommand;
 import com.example.webshop.dto.CustomerInfo;
 import com.example.webshop.service.CustomerService;
@@ -43,10 +42,10 @@ public class CustomerController {
         return new ResponseEntity<>(customer, HttpStatus.OK);
     }
 
-//    @GetMapping("/city")
-//    public ResponseEntity<List<CustomerInfo>> findByType(@RequestParam(value = "city", required = false) Customer customer) {
-//        log.info("Http request, GET /api/bee with parameter genre: " + customer);
-//        List<CustomerInfo> customerInfos = customerService.findByCyíty(customer);
-//        return new ResponseEntity<>(customerInfos, HttpStatus.OK);
-//    }
+    @GetMapping("/name/{name}")
+    public ResponseEntity<List<CustomerInfo>> findCustomerByName(@PathVariable("name") String name){
+        log.info("Http request, GET /api/customers/{name} with variable: " + name);
+        List<CustomerInfo> customerInfo = customerService.findByName(name);
+        return new ResponseEntity<>(customerInfo, HttpStatus.OK);
+    }
 }

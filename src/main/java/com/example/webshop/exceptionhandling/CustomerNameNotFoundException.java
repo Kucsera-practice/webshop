@@ -5,7 +5,6 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public class CustomerNotFoundException extends RuntimeException {
-    private final Long customerId;
-
+public class CustomerNameNotFoundException extends RuntimeException {
+    private final String name;
 }

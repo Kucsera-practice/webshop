@@ -5,6 +5,7 @@ import com.example.webshop.domain.Customer;
 import com.example.webshop.dto.AddressInfo;
 import com.example.webshop.dto.CustomerCreateUpdateCommand;
 import com.example.webshop.dto.CustomerInfo;
+import com.example.webshop.exceptionhandling.CustomerNameNotFoundException;
 import com.example.webshop.exceptionhandling.CustomerNotFoundException;
 import com.example.webshop.repository.CustomerRepository;
 import org.modelmapper.ModelMapper;
@@ -74,5 +75,23 @@ public class CustomerService {
                 .map(customer -> modelMapper.map(customer, CustomerInfo.class))
                 .collect(Collectors.toList());
     }
+//
+//    public CustomerInfo findByName(String name) {
+//       return modelMapper.map(findCustomerByName(name), CustomerInfo.class);
+//    }
+//
+//    private List<Customer> findCustomerByName(String name) {
+//        Optional<List<Customer>> customerOptional = customerRepository.findByName(name);
+//        if (customerOptional.isEmpty()){
+//            throw new CustomerNameNotFoundException(name);
+//        }
+//        return customerOptional.get();
+//    }
 
+    public List<CustomerInfo> findByName(String name) {
+        List<Customer> customers = customerRepository.findByName(name);
+        return customers.stream()
+                .map(customer -> modelMapper.map(customer, CustomerInfo.class))
+                .collect(Collectors.toList());
+    }
 }

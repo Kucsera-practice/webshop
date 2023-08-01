@@ -28,20 +28,20 @@ public class CustomerRepository {
         return Optional.ofNullable(entityManager.find(Customer.class, id));
     }
 
-    public void delete(Customer customer){
+    public void delete(Customer customer) {
         entityManager.remove(customer);
     }
 
-    public List<Customer> findByName(String name){
-        return entityManager.createQuery("SELECT c FROM Customer c WHERE c.name = :name",Customer.class)
-                .setParameter("name",name)
+    public List<Customer> findByName(String name) {
+        return entityManager.createQuery("SELECT c FROM Customer c WHERE c.name = :name", Customer.class)
+                .setParameter("name", name)
                 .getResultList();
     }
 
 
-    public List<Customer> findByCity(String city){
-        return entityManager.createQuery("SELECT c FROM Customer c JOIN Address a WHERE c.address.city = :city",Customer.class)
-                .setParameter("city",city)
+    public List<Customer> findByCity(String city) {
+        return entityManager.createQuery("SELECT c FROM Customer c JOIN Address a WHERE c.address.city = :city", Customer.class)
+                .setParameter("city", city)
                 .getResultList();
     }
 }
