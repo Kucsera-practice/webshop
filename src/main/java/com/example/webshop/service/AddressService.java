@@ -35,11 +35,11 @@ public class AddressService {
     }
 
     public List<AddressInfo> listAddresses(){
-        List<Address> addresses = addressRepository.findAll();
-        List<AddressInfo> addressInfoList = new ArrayList<>();
-        for (Address address : addresses) {
-            AddressInfo addressInfo = modelMapper.map(address, AddressInfo.class);
-            List<CustomerInfo> customerInfos = address.getCustomerList().stream()
+        List<Address> addresses = addressRepository.findAll();                                                  //megkeresi az öszes addrest
+        List<AddressInfo> addressInfoList = new ArrayList<>();                                                  //létrehoz egy új address info listát.
+        for (Address address : addresses) {                                                                      //végigmegy az összes addressen
+            AddressInfo addressInfo = modelMapper.map(address, AddressInfo.class);                              //létrehoz egy address infót és beletölti az adress adatait mindegyiknek.
+            List<CustomerInfo> customerInfos = address.getCustomerList().stream()                               //létrehoz a forcikluson belül egy customerinfólistát ami az eddreszben található customerlistet kapja meg értékül
                     .map(customer -> modelMapper.map(customer,CustomerInfo.class))
                     .collect(Collectors.toList());
             addressInfo.setCustomerList(customerInfos);

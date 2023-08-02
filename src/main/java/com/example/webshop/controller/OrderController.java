@@ -23,7 +23,7 @@ public class OrderController {
     }
 
     @PostMapping
-    public ResponseEntity createAccount(@RequestBody OrderCreateUpdateCommand command) {
+    public ResponseEntity createOrder(@RequestBody OrderCreateUpdateCommand command) {
         log.info("/api/orders " + command.toString());
         orderService.saveOrder(command);
         return new ResponseEntity(HttpStatus.CREATED);

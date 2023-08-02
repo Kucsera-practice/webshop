@@ -2,9 +2,8 @@ package com.example.webshop.service;
 
 import com.example.webshop.domain.Address;
 import com.example.webshop.domain.Order;
-import com.example.webshop.dto.AddressInfo;
-import com.example.webshop.dto.OrderCreateUpdateCommand;
-import com.example.webshop.dto.OrderInfo;
+import com.example.webshop.domain.OrderProduct;
+import com.example.webshop.dto.*;
 import com.example.webshop.repository.OrderRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +11,7 @@ import org.springframework.data.annotation.AccessType;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,9 +28,17 @@ public class OrderService {
     }
 
     public List<OrderInfo> listOrders() {
-        return orderRepository.findAll().stream()
-                .map(order -> modelMapper.map(order, OrderInfo.class))
-                .collect(Collectors.toList());
+        List<Order> orders = orderRepository.findAll();
+        List<OrderInfo> orderInfoList = new ArrayList<>();
+        for (Order order : orders) {
+            OrderInfo orderInfo = modelMapper.map(order, OrderInfo.class);
+            List<OrderProductInfoForOrder> orderProductInfoForOrders = order.getOrderProductList().stream()
+                    .map(orderProduct ->  modelMapper.map(orderProduct,OrderProductInfoForOrder.class))
+                    .collect(Collectors.toList());
+            orderInfo.setOrderProductList(orderProductInfoForOrders);
+            orderInfoList.add(orderInfo);
+        }
+        return orderInfoList;
     }
 
     public OrderInfo saveOrder(OrderCreateUpdateCommand command) {
