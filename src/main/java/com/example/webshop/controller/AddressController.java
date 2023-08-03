@@ -44,7 +44,7 @@ public class AddressController {
         return new ResponseEntity<>(addressInfo, HttpStatus.OK);
     }
 
-    @PutMapping("/id/{id}")
+    @PutMapping("id/{id}")
     public ResponseEntity<AddressInfo> update(@PathVariable("id") Long id, @Valid @RequestBody AddressCreateUpdateCommand command){
         log.info("Http request, PUT /api/bee/{beeId} body: " + command.toString() + " With variable: " + id);
         AddressInfo update = addressService.update(id, command);
@@ -57,5 +57,4 @@ public class AddressController {
        addressService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
 }

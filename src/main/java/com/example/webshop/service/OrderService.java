@@ -32,8 +32,9 @@ public class OrderService {
         List<OrderInfo> orderInfoList = new ArrayList<>();
         for (Order order : orders) {
             OrderInfo orderInfo = modelMapper.map(order, OrderInfo.class);
+
             List<OrderProductInfoForOrder> orderProductInfoForOrders = order.getOrderProductList().stream()
-                    .map(orderProduct ->  modelMapper.map(orderProduct,OrderProductInfoForOrder.class))
+                    .map(orderProduct ->  modelMapper.map(orderProduct.getProduct(),OrderProductInfoForOrder.class))
                     .collect(Collectors.toList());
             orderInfo.setOrderProductList(orderProductInfoForOrders);
             orderInfoList.add(orderInfo);
