@@ -28,8 +28,8 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(AddressNotFoundException.class)
     public ResponseEntity<List<ValidationError>> handleHiveNotFound(AddressNotFoundException exception) {
-        ValidationError validationError = new ValidationError("hiveId",
-                "Hive not found with id: " + exception.getAddressId());
+        ValidationError validationError = new ValidationError("AddressId",
+                "Address not found with id: " + exception.getAddressId());
         return new ResponseEntity<>(List.of(validationError), HttpStatus.BAD_REQUEST);
     }
 }
