@@ -21,4 +21,5 @@ public class Customer {
     @ManyToOne
     @JoinColumn(name = "address_id")
     private Address address;
+
 }

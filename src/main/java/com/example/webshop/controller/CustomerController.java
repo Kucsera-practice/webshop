@@ -63,4 +63,11 @@ public class CustomerController {
         return new ResponseEntity<>(customerInfo, HttpStatus.OK);
     }
 
+    @PutMapping("{customerId}/addresses/{addressId}")
+    public ResponseEntity<CustomerInfo> update(@PathVariable("customerId") Long customerId, @PathVariable("addressId") Long addressId){
+        log.info("Http request, PUT /api/bee/{beeId} body:  With variable: " + customerId + " and " + addressId);
+        CustomerInfo update = customerService.changeAddress(customerId, addressId);
+        return new ResponseEntity<>(update,HttpStatus.OK);
+    }
+
 }

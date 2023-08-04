@@ -14,5 +14,5 @@ public class AddressInfo {
     private String city;
     private String street;
     private String housenumber;
-    private List<CustomerInfo> customerList;
+    private List<CustomerInfo> customerInfoList;
 }

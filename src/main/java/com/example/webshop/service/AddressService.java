@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
 @Transactional
 public class AddressService {
     private AddressRepository addressRepository;
+    private CustomerService customerService;
     private ModelMapper modelMapper;
 
     @Autowired
@@ -42,7 +43,7 @@ public class AddressService {
             List<CustomerInfo> customerInfos = address.getCustomerList().stream()                               //létrehoz a forcikluson belül egy customerinfólistát ami az eddreszben található customerlistet kapja meg értékül
                     .map(customer -> modelMapper.map(customer,CustomerInfo.class))
                     .collect(Collectors.toList());
-            addressInfo.setCustomerList(customerInfos);
+            addressInfo.setCustomerInfoList(customerInfos);
             addressInfoList.add(addressInfo);
         }
         return addressInfoList;

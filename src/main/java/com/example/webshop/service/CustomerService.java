@@ -55,6 +55,14 @@ public class CustomerService {
         return modelMapper.map(toUpdate, CustomerInfo.class);
     }
 
+    public CustomerInfo changeAddress(Long customerId, Long addressId) {
+        Customer toChangeAddress = findCustomerById(customerId);
+        toChangeAddress.getAddress().getCustomerList().remove(toChangeAddress);
+        Address newAddress = addressService.findAddressById(addressId);
+        toChangeAddress.setAddress(newAddress);
+        return modelMapper.map(toChangeAddress,CustomerInfo.class);
+    }
+
     public void delete(Long id) {
         Customer toDelete = findCustomerById(id);
         customerRepository.delete(toDelete);
@@ -86,4 +94,6 @@ public class CustomerService {
                 .map(customer -> modelMapper.map(customer, CustomerInfo.class))
                 .collect(Collectors.toList());
     }
+
+
 }
